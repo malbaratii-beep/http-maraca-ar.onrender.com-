@@ -1,0 +1,13 @@
+{
+  "name": "maraca-ar-demo",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "express": "^4.19.2"
+  }
+}
