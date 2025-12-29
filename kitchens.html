@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MARACA — Kitchens</title>
+  <link rel="stylesheet" href="./assets/style.css"/>
+</head>
+<body>
+  <div class="safe">
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <a href="./home.html" style="display:flex;align-items:center;gap:10px">
+            <img src="./assets/maraca_logo.png" alt="MARACA"/>
+            <div>
+              <b>MARACA</b>
+              <div style="color:var(--muted);font-size:12px;margin-top:3px" data-en="Kitchens" data-ar="مطابخ">Kitchens</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="searchRow">
+          <input placeholder="Search kitchen models (demo)"/>
+        </div>
+
+        <div class="pills">
+          <button class="pill" id="lang">EN / AR</button>
+          <a class="pill" href="./home.html" data-en="Back" data-ar="رجوع">Back</a>
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+        <a class="card" href="./mk01.html">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3>MK01 — Dark Luxury Kitchen</h3>
+            <p data-en="One complete demo kitchen with full customization." data-ar="مطبخ تجريبي كامل مع تخصيص كامل.">One complete demo kitchen with full customization.</p>
+            <div class="badgeRow"><span class="badge">3D</span><span class="badge">AR</span><span class="badge">Configurator</span></div>
+          </div>
+        </a>
+        <div class="card" aria-disabled="true" style="opacity:.6">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3 data-en="More models" data-ar="نماذج إضافية">More models</h3>
+            <p data-en="Coming next (MK02, MK03…)" data-ar="قريباً (MK02, MK03...)">Coming next (MK02, MK03…)</p>
+            <div class="badgeRow"><span class="badge">Coming soon</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  let lang = localStorage.getItem('maraca_lang') || 'en';
+  const langBtn = document.getElementById('lang');
+  function applyLang(){
+    document.documentElement.dir = (lang==='ar') ? 'rtl' : 'ltr';
+    for (const el of document.querySelectorAll('[data-en]')){
+      el.textContent = (lang==='ar') ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+    }
+    langBtn.textContent = (lang==='ar') ? 'AR / EN' : 'EN / AR';
+  }
+  langBtn.onclick = ()=>{ lang = (lang==='ar')?'en':'ar'; localStorage.setItem('maraca_lang', lang); applyLang(); };
+  applyLang();
+</script>
+</body>
+</html>

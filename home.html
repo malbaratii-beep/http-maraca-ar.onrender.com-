@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MARACA — Home</title>
+  <link rel="stylesheet" href="./assets/style.css"/>
+</head>
+<body>
+  <div class="safe">
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <img src="./assets/maraca_logo.png" alt="MARACA"/>
+          <div>
+            <b>MARACA</b><div style="color:var(--muted);font-size:12px;margin-top:3px">Design & AR Preview</div>
+          </div>
+        </div>
+
+        <div class="searchRow">
+          <input id="search" placeholder="Search collections (demo)"/>
+        </div>
+
+        <div class="pills">
+          <button class="pill" id="lang">EN / AR</button>
+          <a class="pill primary" href="./kitchens.html">Start</a>
+        </div>
+      </div>
+
+      <div class="grid" id="grid">
+        <a class="card" href="./kitchens.html">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3 data-en="Kitchens" data-ar="مطابخ">Kitchens</h3>
+            <p data-en="Custom cabinets, islands, and finishes." data-ar="خزائن وجزر وتشطيبات قابلة للتخصيص.">Custom cabinets, islands, and finishes.</p>
+            <div class="badgeRow">
+              <span class="badge">AR</span><span class="badge">Pricing</span><span class="badge">Materials</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="card" href="#">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3 data-en="Bedrooms" data-ar="غرف النوم">Bedrooms</h3>
+            <p data-en="Beds, nightstands, and storage systems." data-ar="أسرة وكومود وتخزين.">Beds, nightstands, and storage systems.</p>
+            <div class="badgeRow"><span class="badge">Coming soon</span></div>
+          </div>
+        </a>
+
+        <a class="card" href="#">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3 data-en="Living Rooms" data-ar="غرف المعيشة">Living Rooms</h3>
+            <p data-en="TV units, sofas, and wall panels." data-ar="وحدات تلفزيون وألواح حائط.">TV units, sofas, and wall panels.</p>
+            <div class="badgeRow"><span class="badge">Coming soon</span></div>
+          </div>
+        </a>
+
+        <a class="card" href="#">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3 data-en="Wardrobes" data-ar="دواليب">Wardrobes</h3>
+            <p data-en="Built-in wardrobes and closets." data-ar="دواليب مدمجة وغرف ملابس.">Built-in wardrobes and closets.</p>
+            <div class="badgeRow"><span class="badge">Coming soon</span></div>
+          </div>
+        </a>
+
+        <a class="card" href="#">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3 data-en="Dining" data-ar="سفرة">Dining</h3>
+            <p data-en="Tables, chairs, and sideboards." data-ar="طاولات وكراسي وبوفيهات.">Tables, chairs, and sideboards.</p>
+            <div class="badgeRow"><span class="badge">Coming soon</span></div>
+          </div>
+        </a>
+
+        <a class="card" href="#">
+          <div class="thumb"></div>
+          <div class="body">
+            <h3 data-en="Offices" data-ar="مكاتب">Offices</h3>
+            <p data-en="Desks, shelves, and storage walls." data-ar="مكاتب وأرفف وتخزين.">Desks, shelves, and storage walls.</p>
+            <div class="badgeRow"><span class="badge">Coming soon</span></div>
+          </div>
+        </a>
+      </div>
+
+      <div class="footerNote" data-en="Demo UI on iPad style. Next: choose Kitchens → MK01."
+           data-ar="واجهة تجريبية على نمط الآيباد. التالي: اختر المطابخ → MK01.">
+        Demo UI on iPad style. Next: choose Kitchens → MK01.
+      </div>
+    </div>
+  </div>
+
+<script>
+  let lang = localStorage.getItem('maraca_lang') || 'en';
+  const langBtn = document.getElementById('lang');
+  function applyLang(){
+    document.documentElement.dir = (lang==='ar') ? 'rtl' : 'ltr';
+    for (const el of document.querySelectorAll('[data-en]')){
+      el.textContent = (lang==='ar') ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+    }
+    langBtn.textContent = (lang==='ar') ? 'AR / EN' : 'EN / AR';
+  }
+  langBtn.onclick = ()=>{ lang = (lang==='ar')?'en':'ar'; localStorage.setItem('maraca_lang', lang); applyLang(); };
+  applyLang();
+</script>
+</body>
+</html>
