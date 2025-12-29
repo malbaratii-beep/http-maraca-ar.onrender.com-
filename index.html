@@ -1,103 +1,79 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MARACA – MK01 3D Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARACA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-<style>
-:root{--bg:#0b0b0e;--panel:#14141a;--gold:#c89b5c;--txt:#f3f3f5;--mut:#b9b9c1}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:var(--bg);color:var(--txt)}
-header{padding:24px;text-align:center;border-bottom:1px solid #222}
-h1{letter-spacing:4px;margin:0}
-.wrap{max-width:1100px;margin:0 auto;padding:20px}
-.card{background:var(--panel);border-radius:16px;padding:20px;margin:14px 0}
-.btn{background:var(--gold);color:#000;border:none;padding:12px 14px;border-radius:10px;font-weight:bold;cursor:pointer}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.select{width:100%;padding:10px;border-radius:10px;border:1px solid #2a2a34;background:#1f1f26;color:#fff}
-.price{font-size:22px;margin-top:12px}
-.lang{position:fixed;top:16px;right:16px}
-.small{color:var(--mut);font-size:13px}
-model-viewer{
-  width:100%;
-  height:420px;
-  background:#000;
-  border-radius:14px;
-}
-</style>
-<script>
-let lang='en';
-let basePrice=120000, door=1200, drawer=1800;
-let doors=10, drawers=5, wood=1.0;
-function t(en,ar){return lang==='en'?en:ar}
-function toggleLang(){
-  lang=lang==='en'?'ar':'en';
-  document.getElementById('tag').innerText=t('Custom Furniture. Built for You.','أثاث مُفصّل… صُنع لك');
-  document.getElementById('mk').innerText=t('MK01 – Dark Luxury Kitchen','MK01 – مطبخ فاخر داكن');
-  document.getElementById('cta').innerText=t('View in Your Space (AR Demo)','عرض في مساحتك (تجريبي)');
-  calc();
-}
-function calc(){
-  const total=Math.round((basePrice+doors*door+drawers*drawer)*wood);
-  document.getElementById('price').innerText=t('Estimated Price: ','السعر التقريبي: ')+total.toLocaleString()+' EGP';
-}
-</script>
+<link rel="stylesheet" href="style.css">
 </head>
-<body onload="calc()">
-<div class="lang"><button class="btn" onclick="toggleLang()">EN / AR</button></div>
-
+<body>
 <header>
   <h1>MARACA</h1>
-  <div id="tag" class="small">Custom Furniture. Built for You.</div>
+  <button id="langBtn">EN / AR</button>
 </header>
 
-<div class="wrap">
-  <section class="card">
-    <h2 id="mk">MK01 – Dark Luxury Kitchen</h2>
-
-    <model-viewer
-      src="https://modelviewer.dev/shared-assets/models/Kitchen.glb"
-      camera-controls
-      auto-rotate
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      exposure="1"
-      shadow-intensity="1">
-      <button slot="ar-button" class="btn">AR</button>
-    </model-viewer>
-
-    <div class="row">
-      <div>
-        <label>Wood Type</label>
-        <select class="select" onchange="wood=this.value;calc()">
-          <option value="1.0">Dark Walnut</option>
-          <option value="1.2">Oak</option>
-        </select>
-      </div>
-      <div>
-        <label>Finish</label>
-        <select class="select">
-          <option>Matte Black</option>
-          <option>Soft Grey</option>
-        </select>
-      </div>
+<main id="home">
+  <h2 data-en="Categories" data-ar="الأقسام">Categories</h2>
+  <div class="grid">
+    <div class="card active" onclick="goKitchens()">
+      <h3 data-en="Kitchens" data-ar="مطابخ">Kitchens</h3>
+      <p>1 Model Available</p>
     </div>
+    <div class="card disabled">Bedrooms (Soon)</div>
+    <div class="card disabled">Furniture (Soon)</div>
+  </div>
+</main>
 
-    <div class="row">
-      <div>
-        <label>Doors</label>
-        <input type="range" min="6" max="20" value="10" oninput="doors=this.value;calc()">
-      </div>
-      <div>
-        <label>Drawers</label>
-        <input type="range" min="0" max="12" value="5" oninput="drawers=this.value;calc()">
-      </div>
+<main id="kitchens" class="hidden">
+  <button onclick="goHome()">← Back</button>
+  <h2 data-en="Kitchens" data-ar="المطابخ">Kitchens</h2>
+  <div class="grid">
+    <div class="card active" onclick="goKitchen()">
+      <h3>MK01 – Dark Luxury</h3>
+      <p data-en="Modern luxury kitchen" data-ar="مطبخ فاخر عصري">Modern luxury kitchen</p>
     </div>
+  </div>
+</main>
 
-    <div id="price" class="price"></div>
-    <button id="cta" class="btn">View in Your Space (AR Demo)</button>
-  </section>
-</div>
+<main id="kitchen" class="hidden">
+  <button onclick="goKitchens()">← Back</button>
+  <h2>MK01 – Dark Luxury Kitchen</h2>
+
+  <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+    camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look"
+    style="width:100%;height:360px;background:#111;border-radius:16px;">
+  </model-viewer>
+
+  <div class="options">
+    <label data-en="Wood Type" data-ar="نوع الخشب">Wood Type</label>
+    <select id="wood">
+      <option>Walnut</option>
+      <option>Oak</option>
+      <option>MDF</option>
+    </select>
+
+    <label data-en="Finish" data-ar="التشطيب">Finish</label>
+    <select id="finish">
+      <option>Matte Black</option>
+      <option>Dark Gray</option>
+      <option>Natural Wood</option>
+    </select>
+
+    <label data-en="Doors" data-ar="الأبواب">Doors</label>
+    <input type="range" min="6" max="20" value="10" id="doors">
+
+    <label data-en="Drawers" data-ar="الأدراج">Drawers</label>
+    <input type="range" min="2" max="15" value="6" id="drawers">
+
+    <h3 id="price">Estimated Price: 145,000 EGP</h3>
+    <button class="primary" data-en="View in Your Space" data-ar="اعرض في مساحتك">
+      View in Your Space
+    </button>
+  </div>
+</main>
+
+<script src="app.js"></script>
 </body>
 </html>
