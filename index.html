@@ -1,22 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<title>MARACA</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>MARACA — Home</title>
+  <link rel="stylesheet" href="./style.css"/>
 </head>
-<body class="home">
-<header>
-<img src="logo.png" class="logo">
-</header>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="leftTools">
+        <button class="iconBtn" aria-label="Menu" title="Menu">☰</button>
+        <div class="search" role="search">
+          <span style="opacity:.8">⌕</span>
+          <input class="i18n-ph" data-en="Search collections (demo)" data-ar="ابحث في الأقسام (تجريبي)" placeholder="Search collections (demo)"/>
+        </div>
+      </div>
 
-<main class="grid">
-<a href="kitchens.html" class="card">Kitchens</a>
-<a href="#" class="card">Bedrooms</a>
-<a href="#" class="card">Living Rooms</a>
-<a href="#" class="card">Wardrobes</a>
-<a href="#" class="card">Dining</a>
-<a href="#" class="card">Offices</a>
-</main>
+      <div class="brand">
+        <img src="./assets/logo.png" alt="MARACA"/>
+        <div class="name">MARACA</div>
+      </div>
+
+      <div class="rightTools" style="justify-content:flex-end;">
+        <div class="pill i18n" data-en="Design & AR Preview" data-ar="تصميم + معاينة AR">Design & AR Preview</div>
+        <div id="langToggle" class="langToggle">EN / عربي</div>
+      </div>
+    </div>
+
+    <h1 class="h1 i18n" data-en="Choose a space to customize" data-ar="اختر مساحة للتخصيص">Choose a space to customize</h1>
+    <p class="sub i18n" data-en="A realistic demo UI for iPad. Start with one complete kitchen model (MK01), and the rest are placeholders for the full app." data-ar="واجهة تجريبية واقعية للآيباد. نبدأ بموديل مطبخ واحد كامل (MK01) والباقي أماكن جاهزة للتوسّع.">A realistic demo UI for iPad...</p>
+
+    <div class="grid">
+      <a class="card" href="./kitchens.html">
+        <div class="media" style="background-image:url('./assets/kitchens.jpg')"></div>
+        <div class="content">
+          <h3 class="i18n" data-en="Kitchens" data-ar="المطابخ">Kitchens</h3>
+          <p class="i18n" data-en="Cabinets, islands, and finishes — with pricing & AR demo." data-ar="دواليب، جزيرة، تشطيبات — مع تسعير وAR تجريبي.">Cabinets, islands...</p>
+          <div class="ctaRow">
+            <span class="badge i18n" data-en="1 model live" data-ar="موديل واحد جاهز">1 model live</span>
+            <span class="cta i18n" data-en="Open" data-ar="دخول">Open</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="./kitchens.html#coming">
+        <div class="media" style="background-image:url('./assets/bedrooms.jpg')"></div>
+        <div class="content">
+          <h3 class="i18n" data-en="Bedrooms" data-ar="غرف النوم">Bedrooms</h3>
+          <p class="i18n" data-en="Beds, nightstands, wardrobes — coming soon." data-ar="أسِرّة، كومود، خزائن — قريباً.">Beds, nightstands...</p>
+          <div class="ctaRow">
+            <span class="badge i18n" data-en="Placeholder" data-ar="قريباً">Placeholder</span>
+            <span class="cta secondary i18n" data-en="Preview" data-ar="معاينة">Preview</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="./kitchens.html#coming">
+        <div class="media" style="background-image:url('./assets/living.jpg')"></div>
+        <div class="content">
+          <h3 class="i18n" data-en="Living Rooms" data-ar="غرف المعيشة">Living Rooms</h3>
+          <p class="i18n" data-en="TV units, wall panels, sofas — coming soon." data-ar="وحدات تلفزيون، بانوهات، كنبات — قريباً.">TV units...</p>
+          <div class="ctaRow">
+            <span class="badge i18n" data-en="Placeholder" data-ar="قريباً">Placeholder</span>
+            <span class="cta secondary i18n" data-en="Preview" data-ar="معاينة">Preview</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="./kitchens.html#coming">
+        <div class="media" style="background-image:url('./assets/wardrobes.jpg')"></div>
+        <div class="content">
+          <h3 class="i18n" data-en="Wardrobes" data-ar="الدريسنج">Wardrobes</h3>
+          <p class="i18n" data-en="Built-in closets with custom modules — coming soon." data-ar="خزائن مفصلة بموديولات — قريباً.">Built-in closets...</p>
+          <div class="ctaRow">
+            <span class="badge i18n" data-en="Placeholder" data-ar="قريباً">Placeholder</span>
+            <span class="cta secondary i18n" data-en="Preview" data-ar="معاينة">Preview</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="./kitchens.html#coming">
+        <div class="media" style="background-image:url('./assets/dining.jpg')"></div>
+        <div class="content">
+          <h3 class="i18n" data-en="Dining" data-ar="السفرة">Dining</h3>
+          <p class="i18n" data-en="Tables, chairs, sideboards — coming soon." data-ar="طاولات، كراسي، بوفيه — قريباً.">Tables, chairs...</p>
+          <div class="ctaRow">
+            <span class="badge i18n" data-en="Placeholder" data-ar="قريباً">Placeholder</span>
+            <span class="cta secondary i18n" data-en="Preview" data-ar="معاينة">Preview</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="card" href="./kitchens.html#coming">
+        <div class="media" style="background-image:url('./assets/offices.jpg')"></div>
+        <div class="content">
+          <h3 class="i18n" data-en="Offices" data-ar="المكاتب">Offices</h3>
+          <p class="i18n" data-en="Desks, shelves, storage walls — coming soon." data-ar="مكاتب، رفوف، وحدات تخزين — قريباً.">Desks, shelves...</p>
+          <div class="ctaRow">
+            <span class="badge i18n" data-en="Placeholder" data-ar="قريباً">Placeholder</span>
+            <span class="cta secondary i18n" data-en="Preview" data-ar="معاينة">Preview</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="footerHint">
+      <div class="i18n" data-en="Tip: for the best iPad feel, open in Safari and add to Home Screen." data-ar="نصيحة: أفضل تجربة على الآيباد عبر Safari ثم Add to Home Screen.">Tip: for the best iPad feel...</div>
+      <div style="opacity:.8">MARACA © demo</div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
 </body>
 </html>

@@ -1,17 +1,222 @@
-<!DOCTYPE html>
-<html>
-<head><link rel="stylesheet" href="style.css"></head>
-<body class="mk">
-<div class="viewer">3D Kitchen Preview</div>
-<div class="panel">
-<h2>Customization</h2>
-<label>Wood</label>
-<select><option>Walnut</option><option>Oak</option></select>
-<label>Color</label>
-<select><option>Matte Black</option><option>Dark Gray</option></select>
-<label>Drawers</label><input type="range">
-<p class="price">Estimated: 150,000 EGP</p>
-<button>Add to Cart</button>
-</div>
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>MARACA — MK01 Configurator</title>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="leftTools">
+        <a class="iconBtn" href="./kitchens.html" aria-label="Back" title="Back">←</a>
+        <div class="pill i18n" data-en="MK01 / Kitchens" data-ar="MK01 / مطابخ">MK01 / Kitchens</div>
+      </div>
+
+      <div class="brand">
+        <img src="./assets/logo.png" alt="MARACA"/>
+        <div class="name">MARACA</div>
+      </div>
+
+      <div class="rightTools" style="justify-content:flex-end;">
+        <div class="pill i18n" data-en="Configurator (Demo)" data-ar="التخصيص (تجريبي)">Configurator (Demo)</div>
+        <div id="langToggle" class="langToggle">EN / عربي</div>
+      </div>
+    </div>
+
+    <div class="config">
+      <!-- Viewer -->
+      <div class="viewer">
+        <div class="viewerTop">
+          <div class="title i18n" data-en="MK01 — Dark Luxury Kitchen" data-ar="MK01 — مطبخ فاخر داكن">MK01 — Dark Luxury Kitchen</div>
+          <div class="pill i18n" data-en="3D + AR Preview" data-ar="٣D + معاينة AR">3D + AR Preview</div>
+        </div>
+
+        <div class="viewerCanvas">
+          <!-- Image preview (placeholder for real 3D model) -->
+          <img src="./assets/hero_kitchen.jpg" alt="Kitchen preview"/>
+          <div class="viewerTools" aria-hidden="true">
+            <div class="toolPill" title="Rotate">⟳</div>
+            <div class="toolPill" title="Zoom">＋</div>
+            <div class="toolPill" title="3D">3D</div>
+          </div>
+        </div>
+
+        <div class="viewerBottom">
+          <div class="note i18n"
+            data-en="Tip: drag to rotate (in real 3D). For now this is a realistic image preview to match the final app feel."
+            data-ar="ملاحظة: في النسخة النهائية تسحب للتدوير (٣D حقيقي). حالياً هذه معاينة صورة واقعية لنعطي إحساس التطبيق النهائي.">
+            Tip: drag to rotate (in real 3D)...
+          </div>
+          <button id="arBtn" class="cta">
+            <span class="i18n" data-en="View in Your Space" data-ar="اعرضه في مساحتك">View in Your Space</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Options panel -->
+      <div class="panel">
+        <div class="head">
+          <h2 class="i18n" data-en="Customize" data-ar="تخصيص">Customize</h2>
+          <p class="i18n" data-en="All options are wired to an instant price estimate (demo logic)." data-ar="كل الخيارات مرتبطة بسعر فوري (منطق تجريبي).">All options are wired...</p>
+        </div>
+
+        <div class="body">
+          <div class="group">
+            <div class="groupTitle">
+              <b class="i18n" data-en="Kitchen Type" data-ar="نوع المطبخ">Kitchen Type</b>
+              <span class="i18n" data-en="Layout" data-ar="الشكل">Layout</span>
+            </div>
+            <select id="kitchenType">
+              <option>Linear + Island</option>
+              <option>L-Shape + Island</option>
+              <option>U-Shape</option>
+            </select>
+          </div>
+
+          <div class="group" id="woodGroup">
+            <div class="groupTitle">
+              <b class="i18n" data-en="Wood Type" data-ar="نوع الخشب">Wood Type</b>
+              <span class="i18n" data-en="Core" data-ar="الخامة">Core</span>
+            </div>
+            <div class="btnRow">
+              <div class="chip" data-value="MDF">MDF</div>
+              <div class="chip" data-value="HPL">HPL</div>
+              <div class="chip active" data-value="Walnut">Walnut</div>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="groupTitle">
+              <b class="i18n" data-en="Finish" data-ar="التشطيب">Finish</b>
+              <span class="i18n" data-en="Cabinets" data-ar="الدولاب">Cabinets</span>
+            </div>
+            <select id="finish">
+              <option>Matte Black</option>
+              <option>Soft Touch Black</option>
+              <option>High Gloss Charcoal</option>
+            </select>
+
+            <div style="height:10px"></div>
+
+            <div class="groupTitle" style="margin-bottom:8px">
+              <b class="i18n" data-en="Colors" data-ar="الألوان">Colors</b>
+              <span class="i18n" data-en="Accent" data-ar="إكسنت">Accent</span>
+            </div>
+            <div class="swatches" id="colorGroup">
+              <div class="swatch" style="background:#111216" data-value="Matte Black" title="Matte Black"></div>
+              <div class="swatch" style="background:#2a2a2f" data-value="Dark Gray" title="Dark Gray"></div>
+              <div class="swatch" style="background:#6c4d2f" data-value="Warm Walnut" title="Warm Walnut"></div>
+              <div class="swatch" style="background:#b5844a" data-value="Brass" title="Brass"></div>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="groupTitle">
+              <b class="i18n" data-en="Appliances" data-ar="الأجهزة">Appliances</b>
+              <span class="i18n" data-en="Included" data-ar="إضافة">Included</span>
+            </div>
+            <div class="row2" style="gap:8px">
+              <label style="display:flex; gap:10px; align-items:center;"><input id="oven" type="checkbox"/> <span class="i18n" data-en="Oven" data-ar="فرن">Oven</span></label>
+              <label style="display:flex; gap:10px; align-items:center;"><input id="cooktop" type="checkbox"/> <span class="i18n" data-en="Cooktop" data-ar="بوتاجاز">Cooktop</span></label>
+              <label style="display:flex; gap:10px; align-items:center;"><input id="dishwasher" type="checkbox"/> <span class="i18n" data-en="Dishwasher" data-ar="غسالة أطباق">Dishwasher</span></label>
+              <label style="display:flex; gap:10px; align-items:center;"><input id="hood" type="checkbox"/> <span class="i18n" data-en="Hood" data-ar="شفاط">Hood</span></label>
+              <label style="display:flex; gap:10px; align-items:center;"><input id="fridge" type="checkbox"/> <span class="i18n" data-en="Fridge" data-ar="ثلاجة">Fridge</span></label>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="groupTitle">
+              <b class="i18n" data-en="Counts" data-ar="الأعداد">Counts</b>
+              <span class="i18n" data-en="Modules" data-ar="وحدات">Modules</span>
+            </div>
+
+            <div class="stepper" data-stepper="shelves">
+              <div>
+                <div style="font-weight:900; font-size:13px" class="i18n" data-en="Shelves" data-ar="الرفوف">Shelves</div>
+                <div style="color:var(--muted); font-size:12px" class="i18n" data-en="Internal shelving" data-ar="رفوف داخلية">Internal shelving</div>
+              </div>
+              <div class="ctrl">
+                <button class="minus">−</button><div class="val">6</div><button class="plus">+</button>
+              </div>
+            </div>
+
+            <div style="height:10px"></div>
+
+            <div class="stepper" data-stepper="drawers">
+              <div>
+                <div style="font-weight:900; font-size:13px" class="i18n" data-en="Drawers" data-ar="الأدراج">Drawers</div>
+                <div style="color:var(--muted); font-size:12px" class="i18n" data-en="Soft-close drawers" data-ar="أدراج سوفت كلوز">Soft-close drawers</div>
+              </div>
+              <div class="ctrl">
+                <button class="minus">−</button><div class="val">5</div><button class="plus">+</button>
+              </div>
+            </div>
+
+            <div style="height:10px"></div>
+
+            <div class="stepper" data-stepper="tallUnits">
+              <div>
+                <div style="font-weight:900; font-size:13px" class="i18n" data-en="Tall Units" data-ar="وحدات طويلة">Tall Units</div>
+                <div style="color:var(--muted); font-size:12px" class="i18n" data-en="Pantry / fridge wall" data-ar="بانتري / حائط ثلاجة">Pantry / fridge wall</div>
+              </div>
+              <div class="ctrl">
+                <button class="minus">−</button><div class="val">2</div><button class="plus">+</button>
+              </div>
+            </div>
+
+            <div style="height:10px"></div>
+
+            <div class="stepper" data-stepper="baseUnits">
+              <div>
+                <div style="font-weight:900; font-size:13px" class="i18n" data-en="Base Units" data-ar="وحدات أرضية">Base Units</div>
+                <div style="color:var(--muted); font-size:12px" class="i18n" data-en="Lower cabinets" data-ar="دواليب سفلية">Lower cabinets</div>
+              </div>
+              <div class="ctrl">
+                <button class="minus">−</button><div class="val">6</div><button class="plus">+</button>
+              </div>
+            </div>
+
+            <div style="height:10px"></div>
+
+            <div class="stepper" data-stepper="wallUnits">
+              <div>
+                <div style="font-weight:900; font-size:13px" class="i18n" data-en="Wall Units" data-ar="وحدات علوية">Wall Units</div>
+                <div style="color:var(--muted); font-size:12px" class="i18n" data-en="Upper cabinets" data-ar="دواليب علوية">Upper cabinets</div>
+              </div>
+              <div class="ctrl">
+                <button class="minus">−</button><div class="val">5</div><button class="plus">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="priceBar">
+            <div class="line">
+              <div class="i18n" data-en="Estimated Price" data-ar="السعر التقريبي">Estimated Price</div>
+              <div id="price" class="big">—</div>
+            </div>
+
+            <div class="actions">
+              <button id="addToCart" class="cta">
+                <span class="i18n" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</span>
+              </button>
+              <button class="cta secondary">
+                <span class="i18n" data-en="Checkout" data-ar="شراء">Checkout</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footerHint">
+      <a class="pill" href="./kitchens.html">← <span class="i18n" data-en="Back to Kitchens" data-ar="الرجوع للمطابخ">Back to Kitchens</span></a>
+      <div style="opacity:.8">MARACA © demo</div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
 </body>
 </html>
