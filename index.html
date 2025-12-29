@@ -1,50 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>MARACA — App Showcase</title>
-  <link rel="stylesheet" href="./styles.css"/>
+<meta charset="UTF-8">
+<title>MARACA | MK01 Dark Luxury Kitchen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="logoBlock">
-        <div class="logoMark">M</div>
-        <div>
-          <div class="brand">MARACA</div>
-          <div class="tag">Bold • Exclusive • Made-to-measure</div>
-        </div>
-      </div>
+<div class="app">
+  <header>
+    <h1>MARACA</h1>
+    <p>Custom Furniture. Built for You.</p>
+  </header>
 
-      <nav class="nav">
-        <a class="navItem active" href="#/home">Home</a>
-        <a class="navItem" href="#/kitchens">Kitchens</a>
-        <a class="navItem" href="#/bedrooms">Bedrooms</a>
-        <a class="navItem" href="#/furniture">Furniture</a>
-        <a class="navItem" href="#/quotes">Quotes</a>
-        <a class="navItem" href="#/about">About</a>
-      </nav>
+  <section class="card">
+    <h2>MK01 – Dark Luxury Kitchen</h2>
+    <p>Linear kitchen with slim island. Designed for modern luxury living.</p>
 
-      <div class="sidebarFooter">
-        <div class="pill">Showcase build (free)</div>
-        <div class="muted">Next: Unity AR app + factory rules</div>
-      </div>
-    </aside>
+    <div class="viewer">
+      <img src="kitchen.jpg" alt="MK01 Kitchen">
+    </div>
 
-    <main class="main">
-      <header class="topbar">
-        <div class="crumb" id="crumb">Home</div>
-        <div class="topActions">
-          <button class="btn ghost" id="demoModeBtn" type="button">Showroom Mode</button>
-          <button class="btn" id="shareBtn" type="button">Copy Share Link</button>
-        </div>
-      </header>
+    <div class="options">
+      <label>Wood Type</label>
+      <select>
+        <option>Dark Walnut</option>
+        <option>Smoked Oak</option>
+      </select>
 
-      <section class="content" id="view"></section>
-    </main>
-  </div>
+      <label>Cabinet Finish</label>
+      <select>
+        <option>Matte Black</option>
+        <option>Graphite</option>
+      </select>
+    </div>
 
-  <script type="module" src="./app.js"></script>
+    <div class="price">
+      Estimated Price: <strong>158,000 EGP</strong>
+    </div>
+
+    <button>View in Your Space (Demo)</button>
+  </section>
+</div>
 </body>
 </html>
