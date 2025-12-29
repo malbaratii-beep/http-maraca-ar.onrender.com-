@@ -3,34 +3,48 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>MARACA — AR Demo</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <link rel="stylesheet" href="style.css"/>
+  <title>MARACA — App Showcase</title>
+  <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>MARACA</h1>
-      <p>Static AR demo for GitHub Pages (no backend).</p>
-    </header>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logoBlock">
+        <div class="logoMark">M</div>
+        <div>
+          <div class="brand">MARACA</div>
+          <div class="tag">Bold • Exclusive • Made-to-measure</div>
+        </div>
+      </div>
 
-    <model-viewer
-      src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      camera-controls
-      auto-rotate
-      shadow-intensity="1"
-      style="width:100%;height:70vh;">
-      <button slot="ar-button" class="btn">View in AR</button>
-    </model-viewer>
+      <nav class="nav">
+        <a class="navItem active" href="#/home">Home</a>
+        <a class="navItem" href="#/kitchens">Kitchens</a>
+        <a class="navItem" href="#/bedrooms">Bedrooms</a>
+        <a class="navItem" href="#/furniture">Furniture</a>
+        <a class="navItem" href="#/quotes">Quotes</a>
+        <a class="navItem" href="#/about">About</a>
+      </nav>
 
-    <div class="panel">
-      <label>Main Color</label>
-      <input type="color" id="color" value="#DE7A31"/>
-    </div>
+      <div class="sidebarFooter">
+        <div class="pill">Showcase build (free)</div>
+        <div class="muted">Next: Unity AR app + factory rules</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb" id="crumb">Home</div>
+        <div class="topActions">
+          <button class="btn ghost" id="demoModeBtn" type="button">Showroom Mode</button>
+          <button class="btn" id="shareBtn" type="button">Copy Share Link</button>
+        </div>
+      </header>
+
+      <section class="content" id="view"></section>
+    </main>
   </div>
 
-  <script src="app.js"></script>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
