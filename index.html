@@ -2,44 +2,101 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MARACA | MK01 Dark Luxury Kitchen</title>
+<title>MARACA – MK01 3D Demo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+:root{--bg:#0b0b0e;--panel:#14141a;--gold:#c89b5c;--txt:#f3f3f5;--mut:#b9b9c1}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:var(--bg);color:var(--txt)}
+header{padding:24px;text-align:center;border-bottom:1px solid #222}
+h1{letter-spacing:4px;margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding:20px}
+.card{background:var(--panel);border-radius:16px;padding:20px;margin:14px 0}
+.btn{background:var(--gold);color:#000;border:none;padding:12px 14px;border-radius:10px;font-weight:bold;cursor:pointer}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.select{width:100%;padding:10px;border-radius:10px;border:1px solid #2a2a34;background:#1f1f26;color:#fff}
+.price{font-size:22px;margin-top:12px}
+.lang{position:fixed;top:16px;right:16px}
+.small{color:var(--mut);font-size:13px}
+model-viewer{
+  width:100%;
+  height:420px;
+  background:#000;
+  border-radius:14px;
+}
+</style>
+<script>
+let lang='en';
+let basePrice=120000, door=1200, drawer=1800;
+let doors=10, drawers=5, wood=1.0;
+function t(en,ar){return lang==='en'?en:ar}
+function toggleLang(){
+  lang=lang==='en'?'ar':'en';
+  document.getElementById('tag').innerText=t('Custom Furniture. Built for You.','أثاث مُفصّل… صُنع لك');
+  document.getElementById('mk').innerText=t('MK01 – Dark Luxury Kitchen','MK01 – مطبخ فاخر داكن');
+  document.getElementById('cta').innerText=t('View in Your Space (AR Demo)','عرض في مساحتك (تجريبي)');
+  calc();
+}
+function calc(){
+  const total=Math.round((basePrice+doors*door+drawers*drawer)*wood);
+  document.getElementById('price').innerText=t('Estimated Price: ','السعر التقريبي: ')+total.toLocaleString()+' EGP';
+}
+</script>
 </head>
-<body>
-<div class="app">
-  <header>
-    <h1>MARACA</h1>
-    <p>Custom Furniture. Built for You.</p>
-  </header>
+<body onload="calc()">
+<div class="lang"><button class="btn" onclick="toggleLang()">EN / AR</button></div>
 
+<header>
+  <h1>MARACA</h1>
+  <div id="tag" class="small">Custom Furniture. Built for You.</div>
+</header>
+
+<div class="wrap">
   <section class="card">
-    <h2>MK01 – Dark Luxury Kitchen</h2>
-    <p>Linear kitchen with slim island. Designed for modern luxury living.</p>
+    <h2 id="mk">MK01 – Dark Luxury Kitchen</h2>
 
-    <div class="viewer">
-      <img src="kitchen.jpg" alt="MK01 Kitchen">
+    <model-viewer
+      src="https://modelviewer.dev/shared-assets/models/Kitchen.glb"
+      camera-controls
+      auto-rotate
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      exposure="1"
+      shadow-intensity="1">
+      <button slot="ar-button" class="btn">AR</button>
+    </model-viewer>
+
+    <div class="row">
+      <div>
+        <label>Wood Type</label>
+        <select class="select" onchange="wood=this.value;calc()">
+          <option value="1.0">Dark Walnut</option>
+          <option value="1.2">Oak</option>
+        </select>
+      </div>
+      <div>
+        <label>Finish</label>
+        <select class="select">
+          <option>Matte Black</option>
+          <option>Soft Grey</option>
+        </select>
+      </div>
     </div>
 
-    <div class="options">
-      <label>Wood Type</label>
-      <select>
-        <option>Dark Walnut</option>
-        <option>Smoked Oak</option>
-      </select>
-
-      <label>Cabinet Finish</label>
-      <select>
-        <option>Matte Black</option>
-        <option>Graphite</option>
-      </select>
+    <div class="row">
+      <div>
+        <label>Doors</label>
+        <input type="range" min="6" max="20" value="10" oninput="doors=this.value;calc()">
+      </div>
+      <div>
+        <label>Drawers</label>
+        <input type="range" min="0" max="12" value="5" oninput="drawers=this.value;calc()">
+      </div>
     </div>
 
-    <div class="price">
-      Estimated Price: <strong>158,000 EGP</strong>
-    </div>
-
-    <button>View in Your Space (Demo)</button>
+    <div id="price" class="price"></div>
+    <button id="cta" class="btn">View in Your Space (AR Demo)</button>
   </section>
 </div>
 </body>
